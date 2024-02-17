@@ -13,28 +13,28 @@ import static org.junit.Assert.*;
 @RunWith(MockitoJUnitRunner.class)
 public class LionTest {
     @Mock
-    Feline feline;
+    private Feline felineMock;
 
     @Test
     public void getKittensTest() throws Exception {
-        Lion lion = new Lion("Самка", feline);
-        Mockito.when(feline.getKittens()).thenReturn(6);
+        Lion lion = new Lion("Самка", felineMock);
+        Mockito.when(felineMock.getKittens()).thenReturn(6);
         int expectedResult = 6;
         int actualResult = lion.getKittens();
         assertEquals("Результат не совпаает с ожидаемым", expectedResult, actualResult);
     }
 
     @Test
-    public void doesHaveManeMaleTest() throws Exception {
-        Lion lion = new Lion("Самец", feline);
+    public void doesHaveMane_lionMale_resultTrue() throws Exception {
+        Lion lion = new Lion("Самец", felineMock);
         boolean expectedResult = true;
         boolean actualResult = lion.doesHaveMane();
         assertEquals("Результат не совпаает с ожидаемым", expectedResult, actualResult);
     }
 
     @Test
-    public void doesHaveManeFemaleTest() throws Exception {
-        Lion lion = new Lion("Самка", feline);
+    public void doesHaveMane_lionFemale_resultFalse() throws Exception {
+        Lion lion = new Lion("Самка", felineMock);
         boolean expectedResult = false;
         boolean actualResult = lion.doesHaveMane();
         assertEquals("Результат не совпаает с ожидаемым", expectedResult, actualResult);
@@ -42,11 +42,18 @@ public class LionTest {
 
     @Test
     public void getFoodTest() throws Exception {
-        Lion lion = new Lion("Самец", feline);
-        Mockito.when(feline.getFood("Хищник")).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+        Lion lion = new Lion("Самец", felineMock);
+        Mockito.when(felineMock.getFood("Хищник")).thenReturn(List.of("Животные", "Птицы", "Рыба"));
         List<String> expectedResult = List.of("Животные", "Птицы", "Рыба");
         List<String> actualResult = lion.getFood();
         assertEquals("Результат не совпаает с ожидаемым", expectedResult, actualResult);
     }
+
+    @Test
+    public void checkingExceptionTest() {
+        Exception exception = assertThrows(Exception.class, () -> new Lion("Неизвестно", new Feline()));
+        System.out.println(exception.getMessage());
+    }
+
 
 }
