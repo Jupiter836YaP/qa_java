@@ -29,7 +29,7 @@ public class LionTest {
         Lion lion = new Lion("Самец", felineMock);
         boolean expectedResult = true;
         boolean actualResult = lion.doesHaveMane();
-        assertEquals("Результат не совпаает с ожидаемым", expectedResult, actualResult);
+        assertEquals("У самца должна быть грива", expectedResult, actualResult);
     }
 
     @Test
@@ -37,7 +37,7 @@ public class LionTest {
         Lion lion = new Lion("Самка", felineMock);
         boolean expectedResult = false;
         boolean actualResult = lion.doesHaveMane();
-        assertEquals("Результат не совпаает с ожидаемым", expectedResult, actualResult);
+        assertEquals("У самки не должно быть гривы", expectedResult, actualResult);
     }
 
     @Test
