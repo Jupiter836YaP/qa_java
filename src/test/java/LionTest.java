@@ -43,16 +43,15 @@ public class LionTest {
     @Test
     public void getFoodTest() throws Exception {
         Lion lion = new Lion("Самец", felineMock);
-        Mockito.when(felineMock.getFood("Хищник")).thenReturn(List.of("Животные", "Птицы", "Рыба"));
-        List<String> expectedResult = List.of("Животные", "Птицы", "Рыба");
+        List<String> predatorExpectedFood = List.of("Животные", "Птицы", "Рыба");
+        Mockito.when(felineMock.getFood("Хищник")).thenReturn(predatorExpectedFood);
         List<String> actualResult = lion.getFood();
-        assertEquals("Результат не совпаает с ожидаемым", expectedResult, actualResult);
+        assertEquals("Результат не совпаает с ожидаемым", predatorExpectedFood, actualResult);
     }
 
     @Test
     public void checkingExceptionTest() {
-        Exception exception = assertThrows(Exception.class, () -> new Lion("Неизвестно", new Feline()));
-        System.out.println(exception.getMessage());
+        assertThrows(Exception.class, () -> new Lion("Неизвестно", new Feline()));
     }
 
 
