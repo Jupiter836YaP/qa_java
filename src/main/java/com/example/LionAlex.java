@@ -2,6 +2,7 @@ package com.example;
 import java.util.HashMap;
 
 public class LionAlex extends Lion {
+    public static final int ALEX_KITTENS_COUNT = 0;
     public LionAlex(Feline feline) throws Exception {
         super("Самец", feline);
     }
@@ -20,7 +21,7 @@ public class LionAlex extends Lion {
 
     @Override
     public int getKittens() {
-        return 0;
+        return ALEX_KITTENS_COUNT;
     }
 
 }
